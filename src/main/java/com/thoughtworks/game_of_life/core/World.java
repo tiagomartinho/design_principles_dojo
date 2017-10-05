@@ -30,7 +30,8 @@ public class World {
                 case DEAD:
                     newCells.put(location, new DeadCell());
                     break;
-                default:
+                case ZOMBIE:
+                    newCells.put(location, new ZombieCell());
                     break;
             }
         }
