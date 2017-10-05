@@ -3,6 +3,7 @@ package com.thoughtworks.game_of_life.core;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.thoughtworks.game_of_life.core.CellStatus.ALIVE;
 import static com.thoughtworks.game_of_life.core.Location.allWorldLocations;
 
 public class World {
@@ -30,7 +31,7 @@ public class World {
 
     public boolean isEmpty() {
         for (Cell cell: cells.values()) {
-            if (cell.isAlive()){
+            if (cell.getStatus() == ALIVE){
                 return false;
             }
         }
@@ -42,7 +43,7 @@ public class World {
     }
 
     public boolean isAlive(Location location) {
-        return cells.get(location).isAlive();
+        return cells.get(location).getStatus() == ALIVE;
     }
 
     private Map<Location,Cell> initCells() {
@@ -57,7 +58,7 @@ public class World {
         int aliveNeighbours = 0;
 
         for (Location location : l.allNeighbours(DEFAULT_WIDTH, DEFAULT_HEIGHT)){
-            if (cells.get(location).isAlive()){
+            if (cells.get(location).getStatus() == ALIVE){
                 aliveNeighbours++;
             }
         }
