@@ -12,4 +12,13 @@ public class DeadCell implements Cell{
     public CellStatus getStatus() {
         return DEAD;
     }
+
+    @Override
+    public CellStatus nextStatus(int numberOfAliveNeighbours) {
+        if(numberOfAliveNeighbours == 3) {
+            return ALIVE;
+        } else {
+            return DEAD;
+        }
+    }
 }
