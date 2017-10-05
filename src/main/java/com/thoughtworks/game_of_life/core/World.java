@@ -23,7 +23,7 @@ public class World {
         Map<Location, Cell> newCells = initCells();
 
         for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
-            if (cells.get(location).willBeAlive(numberOfAliveNeighbours(location))){
+            if (cells.get(location).nextStatus(numberOfAliveNeighbours(location)) == ALIVE) {
                 newCells.put(location, new AliveCell());
             }
         }

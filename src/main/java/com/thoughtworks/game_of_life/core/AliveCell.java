@@ -6,11 +6,6 @@ import static com.thoughtworks.game_of_life.core.CellStatus.DEAD;
 public class AliveCell implements Cell{
 
     @Override
-    public boolean willBeAlive(int numberOfAliveNeighbours) {
-        return numberOfAliveNeighbours == 2 || numberOfAliveNeighbours == 3;
-    }
-
-    @Override
     public CellStatus getStatus() {
         return ALIVE;
     }
