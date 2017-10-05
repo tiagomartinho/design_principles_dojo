@@ -98,7 +98,6 @@ public class WorldTest {
         assertThat(world.isAlive(at(2, 3)), is(true));
     }
 
-    @Ignore
     @Test
     public void dead_cell_with_exactly_four_live_neighbours_becomes_zombie() {
 
