@@ -15,7 +15,7 @@ public class World {
 
     Map<Location, Cell> cells;
 
-    public World()  {
+    public World() {
         cells = initCells();
     }
 
@@ -23,16 +23,23 @@ public class World {
         Map<Location, Cell> newCells = initCells();
 
         for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
-            if (cells.get(location).nextStatus(numberOfAliveNeighbours(location)) == ALIVE) {
-                newCells.put(location, new AliveCell());
+            switch (cells.get(location).nextStatus(numberOfAliveNeighbours(location))) {
+                case ALIVE:
+                    newCells.put(location, new AliveCell());
+                    break;
+                case DEAD:
+                    newCells.put(location, new DeadCell());
+                    break;
+                default:
+                    break;
             }
         }
         cells = newCells;
     }
 
     public boolean isEmpty() {
-        for (Cell cell: cells.values()) {
-            if (cell.getStatus() == ALIVE){
+        for (Cell cell : cells.values()) {
+            if (cell.getStatus() == ALIVE) {
                 return false;
             }
         }
@@ -47,7 +54,7 @@ public class World {
         return cells.get(location).getStatus() == ALIVE;
     }
 
-    private Map<Location,Cell> initCells() {
+    private Map<Location, Cell> initCells() {
         Map<Location, Cell> cells = new HashMap<Location, Cell>();
         for (Location location : allWorldLocations(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
             cells.put(location, new DeadCell());
@@ -58,8 +65,8 @@ public class World {
     public int numberOfAliveNeighbours(Location l) {
         int aliveNeighbours = 0;
 
-        for (Location location : l.allNeighbours(DEFAULT_WIDTH, DEFAULT_HEIGHT)){
-            if (cells.get(location).getStatus() == ALIVE){
+        for (Location location : l.allNeighbours(DEFAULT_WIDTH, DEFAULT_HEIGHT)) {
+            if (cells.get(location).getStatus() == ALIVE) {
                 aliveNeighbours++;
             }
         }
