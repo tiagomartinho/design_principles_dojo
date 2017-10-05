@@ -1,6 +1,7 @@
 package com.thoughtworks.game_of_life.core;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.thoughtworks.game_of_life.core.Location.at;
@@ -97,5 +98,17 @@ public class WorldTest {
         assertThat(world.isAlive(at(2, 3)), is(true));
     }
 
+    @Ignore
+    @Test
+    public void dead_cell_with_exactly_four_live_neighbours_becomes_zombie() {
 
+        world.setLiving(at(2, 2));
+        world.setLiving(at(2, 3));
+        world.setLiving(at(3, 2));
+        world.setLiving(at(4, 2));
+
+        world.advance();
+
+        assertThat(world.isZombie(at(3, 3)), is(true));
+    }
 }
