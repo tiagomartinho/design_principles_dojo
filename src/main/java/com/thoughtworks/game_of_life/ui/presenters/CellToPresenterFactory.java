@@ -5,7 +5,11 @@ import com.thoughtworks.game_of_life.core.World;
 
 public class CellToPresenterFactory {
     public static Presenter toPresenter(World world, Location location) {
-        if (world.isAlive(location)){
+        if (world.isZombie(location)) {
+            return new ZombieCellPresenter(location);
+        }
+
+        if (world.isAlive(location)) {
             return new AliveCellPresenter(location);
         } else {
             return new DeadCellPresenter(location);
