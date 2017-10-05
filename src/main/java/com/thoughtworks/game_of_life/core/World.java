@@ -3,6 +3,7 @@ package com.thoughtworks.game_of_life.core;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.thoughtworks.game_of_life.core.CellStatus.*;
 import static com.thoughtworks.game_of_life.core.CellStatus.ALIVE;
 import static com.thoughtworks.game_of_life.core.Location.allWorldLocations;
 
@@ -65,4 +66,7 @@ public class World {
         return aliveNeighbours;
     }
 
+    public boolean isZombie(Location location) {
+        return cells.get(location).getStatus() == ZOMBIE;
+    }
 }
